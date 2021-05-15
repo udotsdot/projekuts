@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projekuts/screen/home/home_screen.dart';
 import 'package:projekuts/screen/register.dart';
 
 class Login extends StatefulWidget {
@@ -98,7 +99,7 @@ class _LoginState extends State<Login> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => Mainmenu()),
                     );
                   },
                   child: Center(

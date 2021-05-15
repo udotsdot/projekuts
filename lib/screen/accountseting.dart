@@ -14,16 +14,7 @@ class _AccountState extends State<Account> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(21, 141, 202, 1),
         elevation: 0,
-        title: Container(
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-              size: 36.0,
-            ),
-          ),
-        ),
+        title: Container(),
       ),
       body: Container(
         decoration: BoxDecoration(
