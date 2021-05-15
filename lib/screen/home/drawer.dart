@@ -37,12 +37,6 @@ class _DrawersState extends State<Drawers> {
                 style: TextStyle(
                     fontSize: 15, color: Color.fromRGBO(21, 141, 202, 1)),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Payment()),
-                );
-              },
             ),
           ),
           Container(
