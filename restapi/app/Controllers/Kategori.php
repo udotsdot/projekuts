@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Model\Admin\KategoriModel;
+use App\Models\Admin\KategoriModel;
 
 class Kategori extends BaseController
 {
@@ -14,7 +14,7 @@ class Kategori extends BaseController
     public function __construct()
     {
         $this->halaman = 'kategori';
-        $this->$title = 'Kategori';
+        $this->title = 'Kategori';
 
         $this->kategori = new KategoriModel();
     }
@@ -51,7 +51,7 @@ class Kategori extends BaseController
             $list = $this->kategori->ajaxGetData($length, $start);
         }
 
-        if (search !== '') {
+        if ($search !== '') {
             $total_search = $this->kategori->ajaxGetTotalSearch($search);
             $output = [
                 'recordsTotal' => $total_search,
@@ -65,18 +65,56 @@ class Kategori extends BaseController
             $row = [];
             $row[] = $no++;
             $row[] = $temp['nama_kategori'];
-            $row[] = $temp['status'];
+            $row[] = formatStatus($temp['status']);
             $row[] = '';
 
             $data[] = $row;
         }
-
-        $output = [
-            'data' => $data,
-        ];
+    
+        $output['data'] = $data;
 
         echo json_encode($output);
         exit();
+    }
+
+    public function ajaxSave()
+    {
+        $this->validate('save');
+
+        $data = [
+            'nama_kategori' => $this->request->getVar('nama_kategori'),
+            'status' => 1
+        ];
+
+        if ($this->kategori->save($data)) {
+            echo json_encode(['status' => TRUE]);
+        }else {
+            echo json_encode(['status' => FALSE]);
+        }
+    }
+
+    public function _validate($method)
+    {
+        if(!$this->validate($this->kategori->getRulesValidation($method))){
+            $validation = \Config\Services::validation();
+
+            $data = [];
+            $data['error_string'] = [];
+            $data['inputerror'] = [];
+            $data['status'] = TRUE;
+
+            if ($validation->hasError('nama_kategori')) {
+                $data['inputerror'][] = 'nama_kategori';
+                $data['error_string'][] = $validation->getError('nama_kategori');
+                $data['status'] = FALSE;
+            }
+
+            if ($data['status'] == FALSE) {
+                echo json_encode($data);
+                exit();
+            }
+            
+        }
     }
 
 }
