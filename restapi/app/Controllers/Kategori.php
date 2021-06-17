@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Model\Admin\KategoriModel;
+use App\Models\Admin\KategoriModel;
 
 class Kategori extends BaseController
 {
@@ -14,7 +14,7 @@ class Kategori extends BaseController
     public function __construct()
     {
         $this->halaman = 'kategori';
-        $this->$title = 'Kategori';
+        $this->title = 'Kategori';
 
         $this->kategori = new KategoriModel();
     }
