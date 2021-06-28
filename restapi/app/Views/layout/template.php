@@ -28,10 +28,11 @@
     </div>
     <div class="notif"></div>
 
-    <script src="<?=base_url();?>/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?=base_url();?>/dist/js/app.min.js"></script>
-    <script src="<?=base_url();?>/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?=base_url();?>/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script src="<?=base_url();?>/js/alert.js"></script>
+    <script src="<?= base_url(); ?>/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>/dist/js/app.min.js"></script>
+    <script src="<?= base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="<?= base_url(); ?>/js/alert.js"></script>
 </body>
 </html>

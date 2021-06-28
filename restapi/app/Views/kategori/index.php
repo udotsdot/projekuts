@@ -1,11 +1,15 @@
 <script>
-    var urlList = "<?=site_url('kategori/ajaxList');?>"
-    var urlSave = "<?=site_url('kategori/ajaxSave');?>"
+    var urlList = "<?= site_url('kategori/ajaxList'); ?>";
+    var urlSave = "<?= site_url('kategori/ajaxSave'); ?>";
+    var urlEdit = "<?= site_url('kategori/ajaxEdit/'); ?>";
+    var urlUpdate = "<?= site_url('kategori/ajaxUpdate'); ?>";
+    var urlDelete = "<?= site_url('kategori/ajaxDelete/'); ?>";
+    var urlStatus = "<?= site_url('kategori/ajaxStatus/'); ?>";
 </script>
-<script src="<?=base_url();?>/ajax/ajaxKategori.js"></script>
+<script src="<?= base_url(); ?>/ajax/ajaxKategori.js"></script>
 
 <section class="content-header">
-    <h1><?=$title;?></h1>
+    <h1> <?= $title; ?> </h1>
     <ol class="breadcrumb">
         <li class="active">
             <a href="<?=site_url('dashboard');?>">
@@ -16,7 +20,7 @@
         <li class="active">
             <a href="#">
                 <i class="fa fa-cubes"></i>
-                <? $title; ?>
+                <?= $title; ?>
             </a>
         </li>
     </ol>
@@ -42,9 +46,9 @@
                 <thead>
                     <tr>
                         <th style="text-align: center; width: 5%;">No</th>
-                        <th style="text-align: center; width: 5%;">Nama Kategori</th>
-                        <th style="text-align: center; width: 5%;">Status</th>
-                        <th style="text-align: center; width: 5%;">Aksi</th>
+                        <th style="text-align: center;">Nama Kategori</th>
+                        <th style="text-align: center;">Status</th>
+                        <th style="text-align: center; width: 15%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

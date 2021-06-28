@@ -17,11 +17,11 @@ class KategoriModel extends Model
                 'label' => 'nama kategori',
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} Harus diisi!'
-                ]
-            ]
-        ];   
-        
+                    'required' => '{field} harus diisi.',
+                ],
+            ],
+        ];
+
         return $rulesValidation;
     }
 
@@ -60,5 +60,4 @@ class KategoriModel extends Model
 
         return $result;
     }
-
 }
