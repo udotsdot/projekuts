@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <div class="control-label col-md-3">Nama Kategori</div>
                         <div class="col-md-8">
-                            <input type="text" name="nama_kategori" id="nama_kategori" class="form-control">
+                            <input type="text" id="nama_kategori" class="form-control" name="nama_kategori">
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-1"></div>

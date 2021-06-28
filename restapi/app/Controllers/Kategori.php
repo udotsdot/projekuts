@@ -41,7 +41,7 @@ class Kategori extends BaseController
         $output = [
             'length' => $length,
             'draw' => $draw,
-            'recordTotal' => $total,
+            'recordsTotal' => $total,
             'recordsFiltered' => $total,
         ];
 
@@ -62,15 +62,34 @@ class Kategori extends BaseController
         $data = [];
         $no = $start + 1;
         foreach ($list as $temp) {
+            $aksi = '
+                <div class="text-center">
+                    <a href="javascript:void(0)" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit Data" onclick="ajaxEdit(' . $temp['id'] . ')">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Hapus Data" onclick="ajaxDelete(' . $temp['id'] . ')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </div>
+            ';
+
+            $status = '
+                <div class="text-center">
+                    <a href="javascript:void(0)" data-toggle="tooltip" title="' . ($temp['status'] == '0' ? 'Aktifkan' : 'Non-aktifkan') . '" onclick="ajaxStatus(' . $temp['id'] . ')">
+                        ' . formatStatus($temp['status']) . '
+                    </a>
+                </div>
+            ';
+
             $row = [];
             $row[] = $no++;
             $row[] = $temp['nama_kategori'];
-            $row[] = formatStatus($temp['status']);
-            $row[] = '';
+            $row[] = $status;
+            $row[] = $aksi;
 
             $data[] = $row;
         }
-    
+
         $output['data'] = $data;
 
         echo json_encode($output);
@@ -79,42 +98,89 @@ class Kategori extends BaseController
 
     public function ajaxSave()
     {
-        $this->validate('save');
+        $this->_validate('save');
 
         $data = [
             'nama_kategori' => $this->request->getVar('nama_kategori'),
-            'status' => 1
+            'status' => '1',
         ];
 
         if ($this->kategori->save($data)) {
-            echo json_encode(['status' => TRUE]);
-        }else {
-            echo json_encode(['status' => FALSE]);
+            echo json_encode(['status' => true]);
+        } else {
+            echo json_encode(['status' => false]);
+        }
+    }
+
+    public function ajaxEdit($id)
+    {
+        $kategori = $this->kategori->find($id);
+        echo json_encode($kategori);
+    }
+
+    public function ajaxUpdate()
+    {
+        $this->_validate('update');
+
+        $data = [
+            'id' => $this->request->getVar('id'),
+            'nama_kategori' => $this->request->getVar('nama_kategori'),
+        ];
+
+        if ($this->kategori->save($data)) {
+            echo json_encode(['status' => true]);
+        } else {
+            echo json_encode(['status' => false]);
+        }
+    }
+
+    public function ajaxDelete($id)
+    {
+        if ($this->kategori->delete($id)) {
+            echo json_encode(['status' => true]);
+        } else {
+            echo json_encode(['status' => false]);
+        }
+    }
+
+    public function ajaxStatus($id)
+    {
+        $kategori = $this->kategori->find($id);
+        $data['id'] = $id;
+
+        if ($kategori['status'] == '0') {
+            $data['status'] = '1';
+        } else {
+            $data['status'] = '0';
+        }
+
+        if ($this->kategori->save($data)) {
+            echo json_encode(['status' => true]);
+        } else {
+            echo json_encode(['status' => false]);
         }
     }
 
     public function _validate($method)
     {
-        if(!$this->validate($this->kategori->getRulesValidation($method))){
+        if (!$this->validate($this->kategori->getRulesValidation($method))) {
             $validation = \Config\Services::validation();
 
             $data = [];
             $data['error_string'] = [];
             $data['inputerror'] = [];
-            $data['status'] = TRUE;
+            $data['status'] = true;
 
             if ($validation->hasError('nama_kategori')) {
                 $data['inputerror'][] = 'nama_kategori';
                 $data['error_string'][] = $validation->getError('nama_kategori');
-                $data['status'] = FALSE;
+                $data['status'] = false;
             }
 
-            if ($data['status'] == FALSE) {
+            if ($data['status'] == false) {
                 echo json_encode($data);
                 exit();
             }
-            
         }
     }
-
 }
