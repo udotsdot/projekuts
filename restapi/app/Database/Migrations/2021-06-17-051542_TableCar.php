@@ -31,7 +31,7 @@ class TableCar extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'fitur' => [
+            'transmisi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
