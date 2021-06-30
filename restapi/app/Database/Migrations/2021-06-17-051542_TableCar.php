@@ -27,6 +27,22 @@ class TableCar extends Migration
             'gambar' => [
                 'type' => 'TEXT',
             ],
+            'bbm' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
+            'transmisi' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
+            'kursi' => [
+                'type' => 'VARCHAR',
+                'constraint' => 2,
+            ],
+            'kecepatan' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
             'status' => [
                 'type' => 'ENUM',
                 'constraint' => ['0', '1'],
