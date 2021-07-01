@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projekuts/screen/home/home_screen.dart';
-import 'package:projekuts/screen/register.dart';
-import 'package:projekuts/screen/status.dart';
 
 class Payment extends StatefulWidget {
   @override

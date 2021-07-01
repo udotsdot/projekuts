@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projekuts/screen/accountseting.dart';
 import 'package:projekuts/screen/home/home_screen.dart';
 import 'package:projekuts/screen/login.dart';
-import 'package:projekuts/screen/payment.dart';
-import 'package:projekuts/screen/register.dart';
 import 'package:projekuts/screen/status.dart';
 import 'package:projekuts/screen/wishlist.dart';
 

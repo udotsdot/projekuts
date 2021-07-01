@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projekuts/screen/accountseting.dart';
 
 class Status extends StatefulWidget {
   @override
