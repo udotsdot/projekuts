@@ -50,10 +50,10 @@ class _MainmenuState extends State<Mainmenu> {
                   text: "SUV",
                 ),
                 Tab(
-                  text: "Sedang",
+                  text: "Sedan",
                 ),
                 Tab(
-                  text: "Bus",
+                  text: "Minibus",
                 ),
               ]),
           body: TabBarView(children: [
