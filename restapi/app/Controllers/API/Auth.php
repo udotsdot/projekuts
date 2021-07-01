@@ -61,4 +61,32 @@ class Auth extends ResourceController
 		}
 	}
 
+    public function register()
+	{
+		$data = [
+			'nama'     => $this->request->getVar('nama'),
+			'no_telp'  => $this->request->getVar('no_telp'),
+			'email'    => $this->request->getVar('email'),
+			'password' => $this->request->getVar('password'),
+			'status'   => '1',
+		];
+
+		$result = $this->auth->register($data);
+
+		if ($result) {
+			return $this->respond([
+				'status'  => true,
+				'message' => 'Registrasi berhasil.',
+				'data'    => [
+					'id' => $result
+				]
+			], 200);
+		} else {
+			return $this->respond([
+				'status'  => false,
+				'message' => 'Data tidak ditemukan!'
+			], 400);
+		}
+	}
+
 }

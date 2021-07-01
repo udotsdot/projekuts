@@ -7,6 +7,28 @@ use CodeIgniter\Model;
 class AuthModel extends Model
 {
     protected $table = 'users';
+    protected $useTimestamps = true;
+    protected $beforeInsert = ['hashPassword'];
+    protected $beforeUpdate = ['hashPassword'];
+    protected $allowedFields = [
+        'nama',
+        'no_telp',
+        'email',
+        'password',
+        'status',
+    ];
+
+    protected function hashPassword(array $data)
+    {
+        if (!isset($data['data']['password'])) {
+            return $data;
+        }
+
+        $options = ['cost' => 10];
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT, $options);
+
+        return $data;
+    }
 
     public function getValidateEmail($email)
     {
@@ -36,6 +58,19 @@ class AuthModel extends Model
         }
 
         return false;
+    }
+
+    public function register($data)
+    {
+        $result = $this->insert($data);
+
+        if ($result > 0) {
+            $query = $this->find($result);
+
+            return $query['id'];
+        }
+
+        return FALSE;
     }
 
 }
