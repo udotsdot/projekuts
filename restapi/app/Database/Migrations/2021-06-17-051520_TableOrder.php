@@ -11,21 +11,23 @@ class TableOrder extends Migration
         $this->db->enableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
+				'type'           => 'INT',
+				'constraint'     => 11,
                 'unsigned' => true,
                 'auto_increment' => true,
+			],
+			'tgl_pesan' => [
+				'type'           => 'DATETIME',
+			],
+			'total_bayar' => [
+				'type'           => 'VARCHAR',
+				'constraint'     => 50,
+			],
+            'latitude' => [
+                'type' => 'DOUBLE',
             ],
-            'tgl_pesan' => [
-                'type' => 'DATETIME',
-            ],
-            'total_bayar' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-            ],
-            'alamat' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'longitude' => [
+                'type' => 'DOUBLE',
             ],
             'id_pelanggan' => [
                 'type' => 'INT',
@@ -36,16 +38,33 @@ class TableOrder extends Migration
                 'type' => 'ENUM',
                 'constraint' => ['0', '1', '2', '3'],
             ],
+            'alamat_kirim' => [
+                'type' => 'TEXT',
+            ],
+            'noteCancel' => [
+                'type' => 'TEXT',
+            ],
+            'note' => [
+                'type' => 'TEXT',
+            ],
+            'payment' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+            ],
+            'ongkir' => [
+                'type' => 'INT',
+                'constraint' => 10,
+            ],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_pelanggan', 'users', 'id');
         $this->forge->createTable('orders');
-
     }
+
+    //--------------------------------------------------------------------
 
     public function down()
     {
-        $this->forge->createTable('orders');
-
+        $this->forge->dropTable('orders');
     }
 }
