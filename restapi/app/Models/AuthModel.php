@@ -73,4 +73,15 @@ class AuthModel extends Model
         return FALSE;
     }
 
+    public function simpanPassword($data)
+    {
+        $result = $this->save($data);
+
+        if ($result) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
 }

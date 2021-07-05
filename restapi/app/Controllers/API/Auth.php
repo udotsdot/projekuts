@@ -89,4 +89,26 @@ class Auth extends ResourceController
 		}
 	}
 
+	public function simpanPassword()
+	{
+		$data = [
+			'id'       => $this->request->getVar('id'),
+			'password' => $this->request->getVar('password'),
+		];
+
+		$result = $this->auth->simpanPassword($data);
+
+		if ($result) {
+			return $this->respond([
+				'status'  => true,
+				'message' => 'Berhasil mengubah password.',
+			], 200);
+		} else {
+			return $this->respond([
+				'status'  => false,
+				'message' => 'Gagal mengubah password!'
+			], 400);
+		}
+	}
+
 }

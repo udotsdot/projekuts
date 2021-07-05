@@ -41,3 +41,22 @@ function ajaxStatus(id) {
     });
   }
 }
+
+function ajaxDelete(id) {
+  if (confirm("Apakah data ini akan dihapus?")) {
+    $.ajax({
+      url: urlDelete + id,
+      type: "GET",
+      dataType: "JSON",
+      success: function (data) {
+        if (data.status) {
+          success("Data berhasil dihapus.");
+          reload_table();
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        error(errorThrown);
+      },
+    });
+  }
+}
