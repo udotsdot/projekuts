@@ -40,34 +40,41 @@ function formatStatusProduk($status)
 
 function formatStatusPesan($status)
 {
-    if ($status == '0') {
+    if ($status == '1') {
         $result = '
             <div class="text-center">
                 <span class="label label-danger">Belum Diproses</span>
             </div>
         ';
-    } else if ($status == '1') {
+    } else if ($status == '2') {
         $result = '
             <div class="text-center">
                 <span class="label label-primary">Diproses</span>
             </div>
         ';
-    } else if ($status == '2') {
+    } else if ($status == '3') {
         $result = '
             <div class="text-center">
-                <span class="label label-primary">Dalam Pengiriman</span>
+                <span class="label label-info">Dalam Perjalanan</span>
+            </div>
+        ';
+    } else if ($status == '4') {
+        $result = '
+            <div class="text-center">
+                <span class="label label-success">Selesai</span>
             </div>
         ';
     } else {
         $result = '
             <div class="text-center">
-                <span class="label label-success">Selesai</span>
+                <span class="label label-danger">Dibatalkan</span>
             </div>
         ';
     }
 
     return $result;
 }
+
 
 function formatTgl($waktu, $tipe)
 {
